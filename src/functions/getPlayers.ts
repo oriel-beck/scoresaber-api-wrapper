@@ -4,10 +4,9 @@ import SmallPlayer from '../structures/SmallPlayer'
 import { apiError, smallplayerinfo } from '../global'
 
 /**
- * Search players by player name or leaderboard pages
  * 
- * @param input player name or page number
- * @returns {Promise<SmallPlayer[]>} Promise with smaller ScoreSaberPlayer class or throws error
+ * @param {string | number} input The username to search or the leaderboard page
+ * @returns 
  */
 export async function getPlayers(input: string | number = 1): Promise<SmallPlayer[]> {
     let req

@@ -13,6 +13,10 @@ export = class SmallPlayer {
     flagurl: string | null;
     history: string[];
     difference: number;
+    /**
+     * 
+     * @param {smallplayerinfo} data The player data from the leaderbaord (less data then full) 
+     */
     constructor(data: smallplayerinfo) {
         this.id = data.playerId
         this.name = data.playerName
@@ -25,10 +29,20 @@ export = class SmallPlayer {
         this.difference = data.difference
     }
     
+    /**
+     * 
+     * @param type 
+     * @param offset 
+     * @returns 
+     */
     async getScores(type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
         return await getPlayerScores(this.id, type, offset)
     }
 
+    /**
+     * 
+     * @returns 
+     */
     async getFullPlayer(): Promise<ScoreSaberPlayer> {
         return await getPlayer(this.id)
     }

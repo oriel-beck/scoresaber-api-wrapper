@@ -4,8 +4,9 @@ import { apiError, fullplayerprofile } from "../global";
 import ScoreSaberPlayer from "../structures/Player";
 
 /**
- * @param playerId a valid player Id from ScoreSaber
- * @returns {Promise<ScoreSaberPlayer>} Promise with ScoreSaberPlayer class or throws error
+ * 
+ * @param {string} playerId The player ID to search (steam or oculus ID)
+ * @returns 
  */
 export async function getPlayer(playerId: string): Promise<ScoreSaberPlayer> {
     const req = await petitio(`https://new.scoresaber.com/api/player/${playerId}/full`, 'GET').json<fullplayerprofile | apiError>()

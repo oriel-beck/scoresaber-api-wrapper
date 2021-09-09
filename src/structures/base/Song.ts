@@ -11,6 +11,11 @@ export = class ScoreSaberSong {
     difficulty: number;
     difficultyRaw: string;
     maxScore: number;
+    /**
+     * 
+     * @param {ScoreSaberScore} score The original score the song came from
+     * @param {song} data The song data
+     */
     constructor(score: ScoreSaberScore, data: song) {
         this.score = score
         this.name = data.name

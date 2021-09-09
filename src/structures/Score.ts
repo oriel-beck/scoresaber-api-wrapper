@@ -16,6 +16,11 @@ export class ScoreSaberScore {
     leaderboard: string;
     player: ScoreSaberPlayer | SmallPlayer | null;
     song: ScoreSaberSong;
+    /**
+     * 
+     * @param {score} data The score data
+     * @param {ScoreSaberPlayer | smallplayer} player The origin player data (if exists)
+     */
     constructor(data: score, player?: ScoreSaberPlayer | SmallPlayer ) {
         this.rank = data.rank
         this.scoreId = data.scoreId
