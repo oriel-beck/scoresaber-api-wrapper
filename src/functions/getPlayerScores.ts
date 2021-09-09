@@ -1,7 +1,7 @@
 import { ScoreSaberScore } from "../structures/Score";
 import ScoreSaberWrapperError from "../structures/ScoreSaberWrapperError";
 import petitio from 'petitio'
-import { apiError, score } from "../typings/global";
+import { apiError, score } from "../global";
 
 export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<void | ScoreSaberScore[]> {
     try {

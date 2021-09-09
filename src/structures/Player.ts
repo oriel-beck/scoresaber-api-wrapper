@@ -1,4 +1,4 @@
-import { apiError, badgeInfo, fullplayerprofile, score, scoreStats } from "../typings/global";
+import { apiError, badgeInfo, fullplayerprofile, score, scoreStats } from "../global";
 import ScoreSaberWrapperError from "./ScoreSaberWrapperError";
 import petitio from 'petitio'
 import ScoreSaberBadge from "./base/Badge";

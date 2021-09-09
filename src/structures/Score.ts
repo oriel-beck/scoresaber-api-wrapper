@@ -1,4 +1,4 @@
-import { score } from "../typings/global";
+import { score } from "../global";
 import ScoreSaberSong from "./base/Song";
 import ScoreSaberPlayer from "./Player";
 import SmallPlayer from "./SmallPlayer";

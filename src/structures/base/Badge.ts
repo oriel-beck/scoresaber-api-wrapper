@@ -1,4 +1,4 @@
-import { badgeInfo } from "../../typings/global";
+import { badgeInfo } from "../../global";
 
 export = class ScoreSaberBadge {
     name: string | undefined;

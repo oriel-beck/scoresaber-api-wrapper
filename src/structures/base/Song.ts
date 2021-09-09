@@ -1,4 +1,4 @@
-import { song } from "../../typings/global";
+import { song } from "../../global";
 import { ScoreSaberScore } from "../Score";
 
 export = class ScoreSaberSong {

@@ -1,6 +1,6 @@
 import ScoreSaberWrapperError from "../structures/ScoreSaberWrapperError";
 import petitio from 'petitio'
-import { apiError, fullplayerprofile } from "../typings/global";
+import { apiError, fullplayerprofile } from "../global";
 import ScoreSaberPlayer from "../structures/Player";
 
 /**

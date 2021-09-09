@@ -1,4 +1,4 @@
-import { apiError, score, smallplayerinfo } from "../typings/global";
+import { apiError, score, smallplayerinfo } from "../global";
 import ScoreSaberWrapperError from "./ScoreSaberWrapperError";
 import petitio from 'petitio'
 import { ScoreSaberScore } from "./Score";

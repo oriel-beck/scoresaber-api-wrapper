@@ -1,7 +1,7 @@
 import petitio from 'petitio'
 import ScoreSaberWrapperError from '../structures/ScoreSaberWrapperError'
 import SmallPlayer from '../structures/SmallPlayer'
-import { apiError, smallplayerinfo } from '../typings/global'
+import { apiError, smallplayerinfo } from '../global'
 
 /**
  * Search players by player name or leaderboard pages
