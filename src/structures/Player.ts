@@ -40,7 +40,7 @@ export = class ScoreSaberPlayer {
         this.badges = data.playerInfo.badges.map((b: badgeInfo) => new ScoreSaberBadge(b))
     }
 
-    async getScores(type: 'recent' | 'full', offset: number = 1) {
+    async getScores(type: 'recent' | 'full', offset: number = 1): Promise<ScoreSaberScore[]> {
         if (!['recent', 'full'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid type provided!')
         if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
         const req: score[] | apiError = await petitio(`${this.#url}/player/${this.id}/${type}/${offset}`, 'GET').send().then(r => r.json())
