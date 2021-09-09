@@ -9,7 +9,7 @@ import { apiError, smallplayerinfo } from '../global'
  * @param input player name or page number
  * @returns {Promise<void | SmallPlayer[]>} Promise with smaller ScoreSaberPlayer class or throws error
  */
-export async function getPlayers(input: string | number = 1): Promise<void | SmallPlayer[]> {
+export async function getPlayers(input: string | number = 1): Promise<SmallPlayer[]> {
     let req: smallplayerinfo[] | apiError
     if (typeof input === 'string') {
         req = await petitio(`https://new.scoresaber.com/api/players/by-name/${input}`, 'GET').send().then(r => r.json())

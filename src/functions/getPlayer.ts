@@ -7,7 +7,7 @@ import ScoreSaberPlayer from "../structures/Player";
  * @param playerId a valid player Id from ScoreSaber
  * @returns {Promise<void | ScoreSaberPlayer>} Promise with ScoreSaberPlayer class or throws error
  */
-export async function getPlayer(playerId: string): Promise<void | ScoreSaberPlayer> {
+export async function getPlayer(playerId: string) {
     if(!playerId || typeof playerId !== 'string') throw new ScoreSaberWrapperError('[PARAMETERES] : playerId has to be type of string!')
     try {
         BigInt(playerId)

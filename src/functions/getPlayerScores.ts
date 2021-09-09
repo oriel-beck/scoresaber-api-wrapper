@@ -3,7 +3,7 @@ import ScoreSaberWrapperError from "../structures/ScoreSaberWrapperError";
 import petitio from 'petitio'
 import { apiError, score } from "../global";
 
-export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<void | ScoreSaberScore[]> {
+export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
     try {
         BigInt(playerId)
     } catch {
