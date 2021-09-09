@@ -38,7 +38,7 @@ export = class SmallPlayer {
     }
 
     async getFullPlayer(): Promise<ScoreSaberPlayer> {
-        const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${this.id}/full`, 'GET').json()
+        const req = await petitio(`https://new.scoresaber.com/api/player/${this.id}/full`, 'GET').json<fullplayerprofile | apiError>()
         if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
         return new ScoreSaberPlayer(req)
     }

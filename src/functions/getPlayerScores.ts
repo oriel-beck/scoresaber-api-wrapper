@@ -4,16 +4,10 @@ import petitio from 'petitio'
 import { apiError, score } from "../global";
 
 export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
-    try {
-        BigInt(playerId)
-    } catch {
-        throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid player Id!')
-    }
-
     if (!['recent', 'top'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : type has to be recent or top!')
     if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
 
-    const req: score[] | apiError = await petitio(`httpsL//new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').json()
+    const req = await petitio(`httpsL//new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').json<score[] | apiError>()
     if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return req.map(s => new ScoreSaberScore(s))
 }
