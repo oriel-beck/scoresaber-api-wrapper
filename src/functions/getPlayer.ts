@@ -16,7 +16,6 @@ export async function getPlayer(playerId: string): Promise<ScoreSaberPlayer> {
     }
 
     const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${playerId}/full`, 'GET').json()
-    if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
     if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return new ScoreSaberPlayer(req)
 }

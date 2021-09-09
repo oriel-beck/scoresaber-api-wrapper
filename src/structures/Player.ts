@@ -43,8 +43,7 @@ export = class ScoreSaberPlayer {
     async getScores(type: 'recent' | 'full', offset: number = 1): Promise<ScoreSaberScore[]> {
         if (!['recent', 'full'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid type provided!')
         if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
-        const req: score[] | apiError = await petitio(`${this.#url}/player/${this.id}/${type}/${offset}`, 'GET').send().then(r => r.json())
-        if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Invalid request!')
+        const req: score[] | apiError = await petitio(`${this.#url}/player/${this.id}/${type}/${offset}`, 'GET').json()
         if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER]: ${req.error.message}`)
         return req.map(s => new ScoreSaberScore(s, this))
     }

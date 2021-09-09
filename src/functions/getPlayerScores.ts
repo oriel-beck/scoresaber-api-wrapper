@@ -14,7 +14,6 @@ export async function getPlayerScores(playerId: string, type: 'recent' | 'top', 
     if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
 
     const req: score[] | apiError = await petitio(`httpsL//new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').json()
-    if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
     if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return req.map(s => new ScoreSaberScore(s))
 }
