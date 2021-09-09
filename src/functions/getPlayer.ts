@@ -5,9 +5,9 @@ import ScoreSaberPlayer from "../structures/Player";
 
 /**
  * @param playerId a valid player Id from ScoreSaber
- * @returns {Promise<void | ScoreSaberPlayer>} Promise with ScoreSaberPlayer class or throws error
+ * @returns {Promise<ScoreSaberPlayer>} Promise with ScoreSaberPlayer class or throws error
  */
-export async function getPlayer(playerId: string) {
+export async function getPlayer(playerId: string): Promise<ScoreSaberPlayer> {
     if(!playerId || typeof playerId !== 'string') throw new ScoreSaberWrapperError('[PARAMETERES] : playerId has to be type of string!')
     try {
         BigInt(playerId)
@@ -15,7 +15,7 @@ export async function getPlayer(playerId: string) {
         throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid player ID!')
     }
 
-    const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${playerId}/full`, 'GET').send().then(r => r.json())
+    const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${playerId}/full`, 'GET').json()
     if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
     if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return new ScoreSaberPlayer(req)
