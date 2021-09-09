@@ -15,6 +15,6 @@ export async function getPlayerScores(playerId: string, type: 'recent' | 'top', 
 
     const req: score[] | apiError = await petitio(`httpsL//new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').send().then(r => r.json())
     if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
-    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error}`)
+    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return req.map(s => new ScoreSaberScore(s))
 }

@@ -17,6 +17,6 @@ export async function getPlayers(input: string | number = 1): Promise<void | Sma
         req = await petitio(`https://new.scoresaber.com/api/players/${input}`, 'GET').send().then(r => r.json())
     } else throw new ScoreSaberWrapperError('[PARAMETERS] : input has to be type of string, number or undefined!')
     if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
-    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error}`)
+    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return req.map(p => new SmallPlayer(p))
 }

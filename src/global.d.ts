@@ -42,7 +42,9 @@ export interface score {
 }
 
 export interface apiError {
-    error: string
+    error: {
+        message: string
+    }
 }
 
 export interface song {

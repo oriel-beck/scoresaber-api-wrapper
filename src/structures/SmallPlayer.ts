@@ -32,7 +32,7 @@ export = class SmallPlayer {
         if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
         const req: score[] | apiError = await petitio(`${this.#url}/player/${this.id}/${type}/${offset}`, 'GET').send().then(r => r.json())
         if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Invalid request!')
-        if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER]: ${req.error}`)
+        if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER]: ${req.error.message}`)
         return req.map(s => new ScoreSaberScore(s, this))
     }
 }

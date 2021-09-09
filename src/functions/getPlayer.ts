@@ -15,8 +15,8 @@ export async function getPlayer(playerId: string): Promise<void | ScoreSaberPlay
         throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid player ID!')
     }
 
-    const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/players/${playerId}/full`, 'GET').send().then(r => r.json())
+    const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${playerId}/full`, 'GET').send().then(r => r.json())
     if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
-    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error}`)
+    if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return new ScoreSaberPlayer(req)
 }
