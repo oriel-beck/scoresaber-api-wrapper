@@ -3,6 +3,7 @@ import ScoreSaberWrapperError from "./ScoreSaberWrapperError";
 import petitio from 'petitio'
 import { ScoreSaberScore } from "./Score";
 import ScoreSaberPlayer from "./Player";
+import { getPlayer } from "../..";
 
 export = class SmallPlayer {
     #url = 'https://new.scoresaber.com/api'
@@ -38,8 +39,6 @@ export = class SmallPlayer {
     }
 
     async getFullPlayer(): Promise<ScoreSaberPlayer> {
-        const req = await petitio(`https://new.scoresaber.com/api/player/${this.id}/full`, 'GET').json<fullplayerprofile | apiError>()
-        if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
-        return new ScoreSaberPlayer(req)
+        return await getPlayer(this.id)
     }
 }
