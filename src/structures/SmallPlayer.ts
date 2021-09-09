@@ -1,7 +1,8 @@
-import { apiError, score, smallplayerinfo } from "../global";
+import { apiError, fullplayerprofile, score, smallplayerinfo } from "../global";
 import ScoreSaberWrapperError from "./ScoreSaberWrapperError";
 import petitio from 'petitio'
 import { ScoreSaberScore } from "./Score";
+import ScoreSaberPlayer from "./Player";
 
 export = class SmallPlayer {
     #url = 'https://new.scoresaber.com/api'
@@ -34,5 +35,12 @@ export = class SmallPlayer {
         if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Invalid request!')
         if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER]: ${req.error.message}`)
         return req.map(s => new ScoreSaberScore(s, this))
+    }
+
+    async getFullPlayer() {
+        const req: fullplayerprofile | apiError = await petitio(`https://new.scoresaber.com/api/player/${this.id}/full`, 'GET').send().then(r => r.json())
+        if (!req) throw new ScoreSaberWrapperError('[REQUEST] : Bad request!')
+        if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
+        return new ScoreSaberPlayer(req)
     }
 }
