@@ -1,12 +1,9 @@
-import { apiError, badgeInfo, fullplayerprofile, score, scoreStats } from "../global";
-import ScoreSaberWrapperError from "./ScoreSaberWrapperError";
-import petitio from 'petitio'
+import { badgeInfo, fullplayerprofile, scoreStats } from "../global";
 import ScoreSaberBadge from "./base/Badge";
 import { ScoreSaberScore } from "./Score";
+import { getPlayerScores } from "../..";
 
 export = class ScoreSaberPlayer {
-    #url = 'https://new.scoresaber.com/api'
-
     id: `${bigint}`;
     name: string;
     avatar: string;
@@ -40,11 +37,7 @@ export = class ScoreSaberPlayer {
         this.badges = data.playerInfo.badges.map((b: badgeInfo) => new ScoreSaberBadge(b))
     }
 
-    async getScores(type: 'recent' | 'full', offset: number = 1): Promise<ScoreSaberScore[]> {
-        if (!['recent', 'full'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : Invalid type provided!')
-        if (typeof offset !== 'number') throw new ScoreSaberWrapperError('[PARAMETERS] : offset has to be type of number!')
-        const req = await petitio(`${this.#url}/player/${this.id}/${type}/${offset}`, 'GET').json<score[] | apiError>()
-        if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER]: ${req.error.message}`)
-        return req.map(s => new ScoreSaberScore(s, this))
+    async getScores(type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
+        return getPlayerScores(this.id, type, offset)
     }
 }
