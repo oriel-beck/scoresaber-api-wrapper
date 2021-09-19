@@ -3,7 +3,7 @@ Class based wrapper for **[ScoreSaber](https://new.scoresaber.com)**'s API with 
 
 ## Installation
 
-```npm install nekos-best.js```
+```npm install scoresaber-api-wrapper```
 
  - This module uses **[`petitio`](https://www.npmjs.com/package/petitio)** to make the API requests
 
