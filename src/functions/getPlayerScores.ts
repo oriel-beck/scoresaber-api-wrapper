@@ -5,7 +5,10 @@ import { ScoreSaberScore, ScoreSaberWrapperError } from '../structures';
 export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
     if (!['recent', 'top'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : type has to be recent or top!')
     if (!Number.isSafeInteger(offset)) throw new ScoreSaberWrapperError('[PARAMETERS] : offset is not a safe integer!')
-    const req = await petitio(`https://new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').json<{scores: score[]} | apiError>()
+    const req = await petitio(`https://new.scoresaber.com/api/player/${playerId}/scores/${type}/${offset}`, 'GET').send().then(r => {
+        if (r.statusCode === 429) throw new ScoreSaberWrapperError("You are sending too many requets!");
+        return r.json<{scores: score[]} | apiError>()
+    })
     if ('error' in req) throw new ScoreSaberWrapperError(`[SCORESABER] : ${req.error.message}`)
     return req.scores.map(s => new ScoreSaberScore(s))
 }
