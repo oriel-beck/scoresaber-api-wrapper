@@ -23,4 +23,22 @@ export class ScoreSaberSong {
         this.difficultyRaw = data.difficultyRaw
         this.maxScore = data.maxscore
     }
+
+    toString(): string {
+        return this.name
+    }
+
+    toJSON() {
+        return {
+            score: this.score,
+            name: this.name,
+            subname: this.subname,
+            hash: this.hash,
+            author: this.author,
+            levelauthor: this.levelauthor,
+            difficulty: this.difficulty,
+            difficultyRaw: this.difficultyRaw,
+            maxScore: this.maxScore
+        }
+    }
 }

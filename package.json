@@ -1,6 +1,6 @@
 {
   "name": "scoresaber-api-wrapper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A wrapper for scoresaber API",
   "typings": "typings/global.d.ts",
   "license": "MIT",

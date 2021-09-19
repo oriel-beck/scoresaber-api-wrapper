@@ -33,4 +33,22 @@ export class SmallPlayer {
     async getFullPlayer(): Promise<ScoreSaberPlayer> {
         return await getPlayer(this.id)
     }
+
+    toString(): string {
+        return this.name
+    }
+
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            rank: this.rank,
+            pp: this.pp,
+            avatar: this.avatar,
+            country: this.country,
+            flagurl: this.flagurl,
+            history: this.history,
+            difference: this.difference
+        }
+    }
 }

@@ -38,4 +38,25 @@ export class ScoreSaberScore {
             maxscore: data.maxScore
         })
     }
+
+    toString(): number {
+        return this.score
+    }
+
+    toJSON() {
+        return {
+            rank: this.rank,
+            scoreId: this.scoreId,
+            score: this.score,
+            unmodififiedScore: this.unmodififiedScore,
+            mods: this.mods,
+            pp: this.pp,
+            weight: this.weight,
+            timeSet: this.timeSet.toISOString(),
+            leaderboard: this.leaderboard,
+            leaderboardId: this.leaderboardId,
+            player: this.player?.toJSON(),
+            song: this.song.toJSON()
+        }
+    }
 }

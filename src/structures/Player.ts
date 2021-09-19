@@ -39,4 +39,27 @@ export class ScoreSaberPlayer {
     async getScores(type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
         return getPlayerScores(this.id, type, offset)
     }
+
+    toString(): string {
+        return this.name
+    }
+
+    toJSON() {
+        return {
+            id: this.id,
+            name: this.name,
+            avatar: this.avatar,
+            rank: this.rank,
+            countryRank: this.countryRank,
+            country: this.country,
+            flagurl: this.flagurl,
+            role: this.role,
+            history: this.history,
+            permissions: this.permissions,
+            inactive: this.inactive,
+            banned: this.banned,
+            scoresstats: this.scoresstats,
+            badges: this.badges.map(b => b.toJSON())
+        }
+    }
 }
