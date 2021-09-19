@@ -1,7 +1,5 @@
-import { score } from "../global";
-import ScoreSaberSong from "./base/Song";
-import ScoreSaberPlayer from "./Player";
-import SmallPlayer from "./SmallPlayer";
+import { ScoreSaberPlayer, ScoreSaberSong, SmallPlayer } from ".";
+import { score } from "../typings/global";
 
 export class ScoreSaberScore {
     rank: number;
@@ -16,11 +14,7 @@ export class ScoreSaberScore {
     leaderboard: string;
     player: ScoreSaberPlayer | SmallPlayer | null;
     song: ScoreSaberSong;
-    /**
-     * 
-     * @param {score} data The score data
-     * @param {ScoreSaberPlayer | smallplayer} player The origin player data (if exists)
-     */
+
     constructor(data: score, player?: ScoreSaberPlayer | SmallPlayer ) {
         this.rank = data.rank
         this.scoreId = data.scoreId

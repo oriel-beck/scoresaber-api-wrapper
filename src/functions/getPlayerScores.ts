@@ -1,15 +1,7 @@
-import { ScoreSaberScore } from "../structures/Score";
-import ScoreSaberWrapperError from "../structures/ScoreSaberWrapperError";
 import petitio from 'petitio'
-import { apiError, score } from "../global";
+import { apiError, score } from "../typings/global";
+import { ScoreSaberScore, ScoreSaberWrapperError } from '../structures';
 
-/**
- * 
- * @param {string} playerId The player ID to search (steam or oculus ID)
- * @param {string} type The type of scores to search (top / recent)
- * @param {number} offset The offset of the result
- * @returns 
- */
 export async function getPlayerScores(playerId: string, type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
     if (!['recent', 'top'].includes(type)) throw new ScoreSaberWrapperError('[PARAMETERS] : type has to be recent or top!')
     if (!Number.isSafeInteger(offset)) throw new ScoreSaberWrapperError('[PARAMETERS] : offset is not a safe integer!')

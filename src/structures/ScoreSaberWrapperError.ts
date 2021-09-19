@@ -1,1 +1,1 @@
-export = class ScoreSaberWrapperError extends Error {}
+export class ScoreSaberWrapperError extends Error {}

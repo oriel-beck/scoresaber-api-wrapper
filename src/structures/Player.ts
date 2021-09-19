@@ -1,9 +1,8 @@
-import { badgeInfo, fullplayerprofile, scoreStats } from "../global";
-import ScoreSaberBadge from "./base/Badge";
-import { ScoreSaberScore } from "./Score";
-import { getPlayerScores } from "../..";
+import { ScoreSaberBadge, ScoreSaberScore } from ".";
+import { getPlayerScores } from "../functions/getPlayerScores";
+import { badgeInfo, fullplayerprofile, scoreStats } from "../typings/global";
 
-export = class ScoreSaberPlayer {
+export class ScoreSaberPlayer {
     id: `${bigint}`;
     name: string;
     avatar: string;
@@ -19,10 +18,6 @@ export = class ScoreSaberPlayer {
     scoresstats: scoreStats;
     flagurl: string | null;
 
-    /**
-     * 
-     * @param {fullplayerprofile} data The full player data
-     */
     constructor(data: fullplayerprofile) {
         
         this.id = data.playerInfo.playerId
@@ -41,12 +36,6 @@ export = class ScoreSaberPlayer {
         this.badges = data.playerInfo.badges.map((b: badgeInfo) => new ScoreSaberBadge(b))
     }
 
-    /**
-     * 
-     * @param type 
-     * @param offset 
-     * @returns 
-     */
     async getScores(type: 'recent' | 'top', offset: number = 1): Promise<ScoreSaberScore[]> {
         return getPlayerScores(this.id, type, offset)
     }

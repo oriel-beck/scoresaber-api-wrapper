@@ -1,13 +1,7 @@
 import petitio from 'petitio'
-import ScoreSaberWrapperError from '../structures/ScoreSaberWrapperError'
-import SmallPlayer from '../structures/SmallPlayer'
-import { apiError, smallplayerinfo } from '../global'
+import { apiError, smallplayerinfo } from '../typings/global'
+import { ScoreSaberWrapperError, SmallPlayer } from '../structures'
 
-/**
- * 
- * @param {string | number} input The username to search or the leaderboard page
- * @returns 
- */
 export async function getPlayers(input: string | number = 1): Promise<SmallPlayer[]> {
     let req
     if (typeof input === 'string') {

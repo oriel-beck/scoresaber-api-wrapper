@@ -1,5 +1,3 @@
-import { playerInfo, scoreStats } from "./base";
-
 export interface fullplayerprofile {
     playerInfo: playerInfo
     scoreStats: scoreStats
